@@ -42,6 +42,8 @@ around req => fun($orig, $self, $req, @rest) {
 
 method latestblock { $self->get('latestblock?format=JSON') }
 
+method rawtx($txid) { print "rawtx txid=${txid}\n"; $self->get("rawtx/$txid") }
+
 # ABSTRACT: BlockChain (http://BlockChain.info) API bindings
 
 =head1 SYNOPSIS
@@ -62,6 +64,12 @@ method latestblock { $self->get('latestblock?format=JSON') }
     latestblock()
 
 Returns the last block mined on the bitcoin network.
+
+=head2 rawtx
+
+    rawtx($txid)
+
+Returns the raw tx for $txid.
 
 =cut
 
